@@ -346,15 +346,15 @@
                 <div class="demo-box demo-cond">
                     <button class="audio-btn-small sfx-btn-small sfx-top-left" onclick="playRainSound()" title="聽落雨聲">🌧️</button>
                     <div class="emoji-large"><img src="if1.png" class="content-img"></div>
-                    <div class="demo-text-wrap">如果明天下雨，<button class="audio-btn-small" onclick="speakText('如果明天下雨，')">🔊</button></div>
+                    <div class="demo-text-wrap">如果下雨，<button class="audio-btn-small" onclick="speakText('如果下雨，')">🔊</button></div>
                 </div>
                 <div class="demo-arrow">➡️</div>
                 <div class="demo-box demo-act">
-                    <div class="emoji-large"><img src="a1a.png" class="content-img"></div>
-                    <div class="demo-text-wrap">就留在家中看書。<button class="audio-btn-small" onclick="speakText('就留在家中看書。')">🔊</button></div>
+                    <div class="emoji-large"><img src="a1c.png" class="content-img"></div>
+                    <div class="demo-text-wrap">就帶雨傘。<button class="audio-btn-small" onclick="speakText('就帶雨傘。')">🔊</button></div>
                 </div>
             </div>
-            <div class="action-buttons-container" style="margin-top: 25px;"><button class="action-btn play-btn" onclick="speakText('如果明天下雨，就留在家中看書。')">🔊 聽讀全句</button></div>
+            <div class="action-buttons-container" style="margin-top: 25px;"><button class="action-btn play-btn" onclick="speakText('如果下雨，就帶雨傘。')">🔊 聽讀全句</button></div>
         </div>
         <div class="teaching-demo-container">
             <div class="demo-row">
@@ -434,7 +434,7 @@
         <div style="background-color: #fff3e0; padding: 20px; border-radius: 15px; margin-bottom: 30px;"><h3 style="margin: 0 0 15px 0; color: #d35400;">💡 句式小提示</h3><div style="font-size: 28px; font-weight: bold; color: #2c3e50; line-height: 1.6;"><span style="color: #e74c3c; background: white; padding: 5px 10px; border-radius: 10px;">如果</span> + (情況) ， <span style="color: #3498db; background: white; padding: 5px 10px; border-radius: 10px;">就</span> + (行動) 。</div></div>
         <div style="font-size: 24px; color: #7f8c8d; margin-bottom: 15px;">點擊下方的圖鑑卡片可以聽發音喔！👇</div>
         <div id="summary-grid">
-            <div class="summary-card" onclick="speakText('如果明天下雨，就留在家中看書。')"><div class="summary-card-icon"><span><img src="if11.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a11a.png" class="summary-img"></span></div><div class="summary-card-text">如果明天下雨，就留在家中看書。</div></div>
+            <div class="summary-card" onclick="speakText('如果下雨，就帶雨傘。')"><div class="summary-card-icon"><span><img src="if11.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a11c.png" class="summary-img"></span></div><div class="summary-card-text">如果下雨，就帶雨傘。</div></div>
             <div class="summary-card" onclick="speakText('如果做完功課，就可以看電視。')"><div class="summary-card-icon"><span><img src="if22.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a22a.png" class="summary-img"></span></div><div class="summary-card-text">如果做完功課，就可以看電視。</div></div>
             <div class="summary-card" onclick="speakText('如果天氣炎熱，就開風扇。')"><div class="summary-card-icon"><span><img src="if33.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a33a.png" class="summary-img"></span></div><div class="summary-card-text">如果天氣炎熱，就開風扇。</div></div>
             <div class="summary-card" onclick="speakText('如果口渴，就飲水。')"><div class="summary-card-icon"><span><img src="if44.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a44a.png" class="summary-img"></span></div><div class="summary-card-text">如果口渴，就飲水。</div></div>
@@ -553,10 +553,10 @@
         // ======= 練習題資料庫 =======
         const questions = [
             { 
-                conditionText: "如果明天下雨，", imgLow: "<img src='if1.png' class='content-img'>", imgHigh: "<img src='if11.png' class='content-img'>", 
+                conditionText: "如果下雨，", imgLow: "<img src='if1.png' class='content-img'>", imgHigh: "<img src='if11.png' class='content-img'>", 
                 options: [
-                    { text: "留在家中看書", imgLow: "<img src='a1a.png' class='content-img'>", imgHigh: "<img src='a11a.png' class='content-img'>" }, 
-                    { text: "到圖書館看書", imgLow: "<img src='a1b.png' class='content-img'>", imgHigh: "<img src='a11b.png' class='content-img'>" }
+                    { text: "帶雨傘", imgLow: "<img src='a1c.png' class='content-img'>", imgHigh: "<img src='a11c.png' class='content-img'>" }, 
+                    { text: "帶雨衣", imgLow: "<img src='a1d.png' class='content-img'>", imgHigh: "<img src='a11d.png' class='content-img'>" }
                 ] 
             },
             { 
