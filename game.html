@@ -83,7 +83,6 @@
             display: none;
             background-color: white;
             width: 90%;
-            /* 【修改】進一步加寬至 1200px 以容納超寬的總結卡片 */
             max-width: 1200px; 
             border-radius: 20px;
             padding: 30px;
@@ -256,11 +255,10 @@
         #progress { font-size: 24px; color: #7f8c8d; margin-bottom: 15px; }
 
         /* --- 總結面板專屬樣式 --- */
-        /* 【修改】改為單欄排列，並加大卡片寬度 */
         #summary-grid { 
             display: flex; 
-            flex-direction: column; /* 單欄排列 */
-            align-items: center; /* 置中 */
+            flex-direction: column; 
+            align-items: center; 
             gap: 30px; 
             margin-top: 20px; 
         }
@@ -270,7 +268,7 @@
             border: 3px solid #bdc3c7; 
             border-radius: 15px; 
             padding: 30px; 
-            width: 85%; /* 卡片寬度加寬到極限 */
+            width: 85%; 
             max-width: 900px; 
             min-width: 650px;
             text-align: left; 
@@ -284,7 +282,7 @@
         
         .summary-card:hover { transform: translateY(-5px); border-color: #f1c40f; box-shadow: 0 8px 15px rgba(241, 196, 15, 0.2); }
         .summary-card-icon { font-size: 50px; display: flex; align-items: center; justify-content: center; }
-        .summary-arrow { margin: 0 40px; color: #bdc3c7; font-size: 50px; } /* 箭頭也稍微放大配合 */
+        .summary-arrow { margin: 0 40px; color: #bdc3c7; font-size: 50px; }
         .summary-card-text { font-size: 32px; font-weight: bold; color: #2c3e50; text-align: center; margin-top: 10px; }
         
         .bottom-nav { display: flex; justify-content: center; gap: 20px; margin-top: 40px; width: 100%; border-top: 2px solid #ecf0f1; padding-top: 20px; }
@@ -296,23 +294,23 @@
     <h1>句式學習「如果...就...」</h1>
 
     <div id="home-page">
-        <div class="mode-card" id="mode-intro" onclick="switchMode('intro')"><div class="mode-icon">💡</div><div class="mode-title">引入</div><div class="mode-desc">認識句式</div></div>
+        <div class="mode-card" id="mode-intro" onclick="switchMode('intro')"><div class="mode-icon">💡</div><div class="mode-title">引入主題</div><div class="mode-desc">認識魔法連接詞</div></div>
         <div class="mode-card" id="mode-teaching" onclick="switchMode('teaching')"><div class="mode-icon">👨‍🏫</div><div class="mode-title">教學模式</div><div class="mode-desc">學習和聆聽句式示範</div></div>
         <div class="mode-card" id="mode-practice-low" onclick="switchMode('practice-low')"><div class="mode-icon">🎮</div><div class="mode-title">練習模式(初)</div><div class="mode-desc">根據情境，選出結果</div></div>
         <div class="mode-card" id="mode-practice-high" onclick="switchMode('practice-high')"><div class="mode-icon">🚀</div><div class="mode-title">練習模式(高)</div><div class="mode-desc">自選情境，再選出結果</div></div>
-        <div class="mode-card" id="mode-summary" onclick="switchMode('summary')"><div class="mode-icon">📚</div><div class="mode-title">總結</div><div class="mode-desc">溫故知新，重溫所有句式</div></div>
+        <div class="mode-card" id="mode-summary" onclick="switchMode('summary')"><div class="mode-icon">📚</div><div class="mode-title">學習總結</div><div class="mode-desc">溫故知新，重溫所有句式</div></div>
     </div>
 
     <div id="intro-panel" class="content-panel">
-        <h2 class="panel-title">💡 引入</h2>
-        <div class="intro-instruction">🪄 <b>小任務：</b>當天氣炎熱時可以怎麼辦呢？請選擇一個「就...」的動作，把它拖拉到正確位置，完成魔法吧！</div>
+        <h2 class="panel-title">💡 引入主題：魔法連接詞拼圖</h2>
+        <div class="intro-instruction">🪄 <b>小任務：</b>當天氣炎熱時可以怎麼辦呢？請選擇一個「就...」的行動，把它拖拉到正確位置，完成魔法句子吧！</div>
         <div class="drag-area" id="piece-bank">
             <div class="drag-piece piece-cond" draggable="true" id="block-cond" ondragstart="drag(event)" onclick="clickToMove('block-cond')">
                 <img src="if3.png" alt="天氣炎熱">
                 <div>如果天氣炎熱 <button class="audio-btn-small" onclick="event.stopPropagation(); speakText('如果天氣炎熱')" style="display:inline-block; margin-left:10px;">🔊</button></div>
             </div>
             <div class="drag-piece piece-act" draggable="true" id="block-act-1" ondragstart="drag(event)" onclick="clickToMove('block-act-1')">
-                <img src="a3a.png" alt="開風扇">
+                <img src="a3333a.png" alt="開風扇">
                 <div>就開風扇 <button class="audio-btn-small" onclick="event.stopPropagation(); speakText('就開風扇')" style="display:inline-block; margin-left:10px;">🔊</button></div>
             </div>
             <div class="drag-piece piece-act" draggable="true" id="block-act-2" ondragstart="drag(event)" onclick="clickToMove('block-act-2')">
@@ -327,11 +325,11 @@
         </div>
         <div id="magic-result">
             <div style="font-size: 60px;">✨🎉✨</div>
-            <img id="magic-sentence-img" src="" alt="魔法" style="display: none;">
+            <img id="magic-sentence-img" src="" alt="魔法插圖" style="display: none;">
             <div class="magic-text" id="magic-sentence-text">如果天氣炎熱，...</div>
-            <div style="font-size: 24px; color: #e67e22; font-weight: bold;">魔法成功！</div>
+            <div style="font-size: 24px; color: #e67e22; font-weight: bold;">魔法成功！原來同一個情況，也可以有不同的解決方法呢！</div>
             <div class="action-buttons-container" style="margin-top: 20px;">
-                <button id="magic-play-btn" class="action-btn play-btn">🔊 聽讀句子</button>
+                <button id="magic-play-btn" class="action-btn play-btn">🔊 聽讀魔法句子</button>
                 <button class="action-btn redo-btn" onclick="resetIntroPanel()">🔄 重新開始</button>
             </div>
         </div>
@@ -432,9 +430,9 @@
     </div>
 
     <div id="summary-panel" class="content-panel">
-        <h2 class="panel-title">📚 總結</h2>
-        <div style="background-color: #fff3e0; padding: 20px; border-radius: 15px; margin-bottom: 30px;"><h3 style="margin: 0 0 15px 0; color: #d35400;">💡 句式小提示</h3><div style="font-size: 28px; font-weight: bold; color: #2c3e50; line-height: 1.6;"><span style="color: #e74c3c; background: white; padding: 5px 10px; border-radius: 10px;">如果</span> + (情境) ， <span style="color: #3498db; background: white; padding: 5px 10px; border-radius: 10px;">就</span> + (動作) 。</div></div>
-        <div style="font-size: 24px; color: #7f8c8d; margin-bottom: 15px;">點擊下方的句子可以聽發音喔！👇</div>
+        <h2 class="panel-title">📚 學習總結</h2>
+        <div style="background-color: #fff3e0; padding: 20px; border-radius: 15px; margin-bottom: 30px;"><h3 style="margin: 0 0 15px 0; color: #d35400;">💡 句式小提示</h3><div style="font-size: 28px; font-weight: bold; color: #2c3e50; line-height: 1.6;"><span style="color: #e74c3c; background: white; padding: 5px 10px; border-radius: 10px;">如果</span> + (情況) ， <span style="color: #3498db; background: white; padding: 5px 10px; border-radius: 10px;">就</span> + (行動) 。</div></div>
+        <div style="font-size: 24px; color: #7f8c8d; margin-bottom: 15px;">點擊下方的圖鑑卡片可以聽發音喔！👇</div>
         <div id="summary-grid">
             <div class="summary-card" onclick="speakText('如果明天下雨，就留在家中看書。')"><div class="summary-card-icon"><span><img src="if11.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a11a.png" class="summary-img"></span></div><div class="summary-card-text">如果明天下雨，就留在家中看書。</div></div>
             <div class="summary-card" onclick="speakText('如果做完功課，就可以看電視。')"><div class="summary-card-icon"><span><img src="if22.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a22a.png" class="summary-img"></span></div><div class="summary-card-text">如果做完功課，就可以看電視。</div></div>
@@ -447,12 +445,14 @@
     </div>
 
     <script>
-        // ======= 引入邏輯 =======
+        // ======= 引入主題邏輯 =======
         let introState = { cond: false, act: false, selectedActText: "", selectedActId: "" };
+        
         function allowDrop(ev) { ev.preventDefault(); }
         function dragEnter(ev) { ev.preventDefault(); let targetZone = ev.target.closest('.drop-zone'); if (targetZone) targetZone.classList.add('drag-over'); }
         function dragLeave(ev) { let targetZone = ev.target.closest('.drop-zone'); if (targetZone) targetZone.classList.remove('drag-over'); }
         function drag(ev) { ev.dataTransfer.setData("text", ev.target.closest('.drag-piece').id); }
+        
         function drop(ev, requiredType) {
             ev.preventDefault();
             let targetZone = ev.target.closest('.drop-zone');
@@ -463,47 +463,90 @@
             else if (requiredType === 'act' && (data === 'block-act-1' || data === 'block-act-2')) { placePieceInZone(data, targetZone.id); } 
             else { speakText("放錯位置啦，再試一次！"); }
         }
+        
         function clickToMove(pieceId) {
             if (pieceId === 'block-cond' && !introState.cond) placePieceInZone(pieceId, 'zone-cond');
             else if ((pieceId === 'block-act-1' || pieceId === 'block-act-2')) placePieceInZone(pieceId, 'zone-act');
         }
+        
         function placePieceInZone(pieceId, zoneId) {
             const piece = document.getElementById(pieceId);
             const zone = document.getElementById(zoneId);
+            
+            // 如果原本已經有方塊在裡面，把它放回銀行並恢復顯示
             if (zone.children.length > 0 && zone.children[0].classList.contains('drag-piece')) {
-                document.getElementById('piece-bank').appendChild(zone.children[0]);
+                const oldPiece = zone.children[0];
+                document.getElementById('piece-bank').appendChild(oldPiece);
+                oldPiece.style.display = ''; 
             }
-            zone.innerHTML = ''; zone.appendChild(piece);
-            zone.style.border = 'none'; zone.style.backgroundColor = 'transparent'; piece.style.margin = '0'; 
-            if (pieceId === 'block-cond') introState.cond = true;
-            if (pieceId === 'block-act-1') { introState.act = true; introState.selectedActId = pieceId; introState.selectedActText = "就開風扇。"; }
-            if (pieceId === 'block-act-2') { introState.act = true; introState.selectedActId = pieceId; introState.selectedActText = "就用扇子扇涼。"; }
+            
+            zone.innerHTML = ''; 
+            zone.appendChild(piece);
+            zone.style.border = 'none'; 
+            zone.style.backgroundColor = 'transparent'; 
+            piece.style.margin = '0'; 
+            
+            if (pieceId === 'block-cond') {
+                introState.cond = true;
+            }
+            
+            // 關鍵邏輯：當選擇了某個行動時，立刻隱藏另一個行動
+            if (pieceId === 'block-act-1') { 
+                introState.act = true; 
+                introState.selectedActId = pieceId; 
+                introState.selectedActText = "就開風扇。"; 
+                const otherPiece = document.getElementById('block-act-2');
+                if(otherPiece) otherPiece.style.display = 'none'; // 隱藏扇子
+            }
+            if (pieceId === 'block-act-2') { 
+                introState.act = true; 
+                introState.selectedActId = pieceId; 
+                introState.selectedActText = "就用扇子扇涼。"; 
+                const otherPiece = document.getElementById('block-act-1');
+                if(otherPiece) otherPiece.style.display = 'none'; // 隱藏風扇
+            }
+            
             checkMagicSuccess();
         }
+        
         function checkMagicSuccess() {
             if (introState.cond && introState.act) {
                 const resultArea = document.getElementById('magic-result');
                 const resultImg = document.getElementById('magic-sentence-img');
-                if (introState.selectedActId === 'block-act-1') { resultImg.src = 'fan.jpg'; resultImg.style.display = 'inline-block'; } 
-                else if (introState.selectedActId === 'block-act-2') { resultImg.src = 'fan2.jpg'; resultImg.style.display = 'inline-block'; }
+                if (introState.selectedActId === 'block-act-1') { resultImg.src = 'a3333a.png'; resultImg.style.display = 'inline-block'; } 
+                else if (introState.selectedActId === 'block-act-2') { resultImg.src = 'a333a.png'; resultImg.style.display = 'inline-block'; }
                 resultArea.style.display = 'block';
                 const finalSentence = '如果天氣炎熱，' + introState.selectedActText;
                 document.getElementById('magic-sentence-text').innerText = finalSentence;
                 document.getElementById('magic-play-btn').onclick = function() { speakText(finalSentence); };
-                speakText('魔法成功！');
+                speakText('魔法成功！原來同一個情況，也可以有不同的解決方法呢！');
                 const audio = new Audio('rain.mp3'); audio.volume = 0.5; audio.play().catch(e=>{});
             }
         }
+        
         function resetIntroPanel() {
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             const bank = document.getElementById('piece-bank');
-            if(document.getElementById('block-cond')) bank.appendChild(document.getElementById('block-cond'));
-            if(document.getElementById('block-act-1')) bank.appendChild(document.getElementById('block-act-1'));
-            if(document.getElementById('block-act-2')) bank.appendChild(document.getElementById('block-act-2'));
-            document.getElementById('zone-cond').innerHTML = '請放入「如果...」'; document.getElementById('zone-cond').style = ''; 
-            document.getElementById('zone-act').innerHTML = '請放入「就...」'; document.getElementById('zone-act').style = '';
+            
+            // 關鍵邏輯：把所有卡片放回銀行，並清除隱藏狀態（恢復原本的顯示樣式）
+            const condBlock = document.getElementById('block-cond');
+            if(condBlock) { bank.appendChild(condBlock); condBlock.style.display = ''; }
+            
+            const act1Block = document.getElementById('block-act-1');
+            if(act1Block) { bank.appendChild(act1Block); act1Block.style.display = ''; }
+            
+            const act2Block = document.getElementById('block-act-2');
+            if(act2Block) { bank.appendChild(act2Block); act2Block.style.display = ''; }
+
+            document.getElementById('zone-cond').innerHTML = '請放入「如果...」'; 
+            document.getElementById('zone-cond').style = ''; 
+            document.getElementById('zone-act').innerHTML = '請放入「就...」'; 
+            document.getElementById('zone-act').style = '';
+            
             document.getElementById('magic-result').style.display = 'none';
-            document.getElementById('magic-sentence-img').src = ''; document.getElementById('magic-sentence-img').style.display = 'none';
+            document.getElementById('magic-sentence-img').src = ''; 
+            document.getElementById('magic-sentence-img').style.display = 'none';
+            
             introState = { cond: false, act: false, selectedActText: "", selectedActId: "" };
         }
 
