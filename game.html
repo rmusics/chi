@@ -302,8 +302,8 @@
     </div>
 
     <div id="intro-panel" class="content-panel">
-        <h2 class="panel-title">💡 引入主題：魔法連接詞拼圖</h2>
-        <div class="intro-instruction">🪄 <b>小任務：</b>當天氣炎熱時可以怎麼辦呢？請選擇一個「就...」的行動，把它拖拉到正確位置，完成魔法句子吧！</div>
+        <h2 class="panel-title">💡 引入</h2>
+        <div class="intro-instruction">🪄 <b>小任務：</b>當天氣炎熱時可以怎麼辦呢？請把圖卡拖拉到正確位置，完成魔法句子吧！</div>
         <div class="drag-area" id="piece-bank">
             <div class="drag-piece piece-cond" draggable="true" id="block-cond" ondragstart="drag(event)" onclick="clickToMove('block-cond')">
                 <img src="if3.png" alt="天氣炎熱">
@@ -325,11 +325,11 @@
         </div>
         <div id="magic-result">
             <div style="font-size: 60px;">✨🎉✨</div>
-            <img id="magic-sentence-img" src="" alt="魔法插圖" style="display: none;">
+            <img id="magic-sentence-img" src="" alt="魔法" style="display: none;">
             <div class="magic-text" id="magic-sentence-text">如果天氣炎熱，...</div>
             <div style="font-size: 24px; color: #e67e22; font-weight: bold;">魔法成功！原來同一個情況，也可以有不同的解決方法呢！</div>
             <div class="action-buttons-container" style="margin-top: 20px;">
-                <button id="magic-play-btn" class="action-btn play-btn">🔊 聽讀魔法句子</button>
+                <button id="magic-play-btn" class="action-btn play-btn">🔊 聽讀句子</button>
                 <button class="action-btn redo-btn" onclick="resetIntroPanel()">🔄 重新開始</button>
             </div>
         </div>
@@ -432,7 +432,7 @@
     <div id="summary-panel" class="content-panel">
         <h2 class="panel-title">📚 學習總結</h2>
         <div style="background-color: #fff3e0; padding: 20px; border-radius: 15px; margin-bottom: 30px;"><h3 style="margin: 0 0 15px 0; color: #d35400;">💡 句式小提示</h3><div style="font-size: 28px; font-weight: bold; color: #2c3e50; line-height: 1.6;"><span style="color: #e74c3c; background: white; padding: 5px 10px; border-radius: 10px;">如果</span> + (情況) ， <span style="color: #3498db; background: white; padding: 5px 10px; border-radius: 10px;">就</span> + (行動) 。</div></div>
-        <div style="font-size: 24px; color: #7f8c8d; margin-bottom: 15px;">點擊下方的圖鑑卡片可以聽發音喔！👇</div>
+        <div style="font-size: 24px; color: #7f8c8d; margin-bottom: 15px;">點擊下方的圖卡可以聆聽發音！👇</div>
         <div id="summary-grid">
             <div class="summary-card" onclick="speakText('如果下雨，就帶雨傘。')"><div class="summary-card-icon"><span><img src="if11.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a11c.png" class="summary-img"></span></div><div class="summary-card-text">如果下雨，就帶雨傘。</div></div>
             <div class="summary-card" onclick="speakText('如果做完功課，就可以看電視。')"><div class="summary-card-icon"><span><img src="if22.png" class="summary-img"></span><span class="summary-arrow">➡️</span><span><img src="a22a.png" class="summary-img"></span></div><div class="summary-card-text">如果做完功課，就可以看電視。</div></div>
