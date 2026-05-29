@@ -222,6 +222,11 @@
         /* --- 練習模式 --- */
         #condition-area { background-color: #e74c3c; color: white; padding: 20px; border-radius: 15px; font-size: 40px; font-weight: bold; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
         #high-mode-selection { background-color: #fff3e0; padding: 25px; border-radius: 15px; border: 4px dashed #ffb300; margin-bottom: 30px; }
+        
+        /* 初級模式目錄樣式 */
+        #low-mode-menu { background-color: #e8f8f5; padding: 25px; border-radius: 15px; border: 4px dashed #2ecc71; margin-bottom: 30px; }
+        .low-menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; }
+
         .condition-text-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
         
         .emoji-large { font-size: 80px; margin-bottom: 10px; display: flex; justify-content: center; align-items: center; min-height: 220px; }
@@ -321,7 +326,7 @@
         <div class="drop-area">
             <div id="zone-cond" class="drop-zone" ondrop="drop(event, 'cond')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">請放入「如果...」</div>
             <div style="font-size: 50px; color: #7f8c8d;">➡️</div>
-            <div id="zone-act" class="drop-zone" ondrop="drop(event, 'act')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">請放入「就...」</div>
+            <div id="zone-act" class="drop-zone" ondrop="drop(event, 'act')" ondrop="drop(event, 'act')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">請放入「就...」</div>
         </div>
         <div id="magic-result">
             <div style="font-size: 60px;">✨🎉✨</div>
@@ -393,6 +398,12 @@
         <h2 id="practice-mode-title" class="panel-title">🎮 練習模式</h2>
         <div id="progress">第 1 題</div>
         
+        <div id="low-mode-menu" style="display: none;">
+            <h3 style="font-size: 32px; color: #27ae60; margin-top: 0;">🤔 請選擇你想練習的題目：</h3>
+            <div id="low-menu-options" class="low-menu-grid">
+                </div>
+        </div>
+
         <div id="high-mode-selection">
             <h3 style="font-size: 32px; color: #d35400; margin-top: 0;">🤔 請先選擇一個情境：</h3>
             <div class="high-options-row">
@@ -420,11 +431,12 @@
 
         <div id="completion-area">
             <div class="emoji-large">🏆</div><div style="font-size: 50px; color: #2c3e50; font-weight: bold; margin-bottom: 20px;">恭喜你完成了所有題目！</div>
-            <div class="action-buttons-container"><button class="action-btn next-btn" onclick="currentLevelIndex=0; loadQuestion();">🔄 再玩一次</button></div>
+            <div class="action-buttons-container"><button class="action-btn next-btn" onclick="showLowModeMenuOrReset();">🔄 返回目錄 / 再玩一次</button></div>
         </div>
 
         <div class="bottom-nav">
             <button id="prev-btn" class="action-btn prev-btn" onclick="prevQuestion()">⬅️ 返回上一題</button>
+            <button id="low-menu-back-btn" class="action-btn redo-cond-btn" onclick="showLowModeMenu()" style="display: none; background-color: #2ecc71; box-shadow: 0 5px 0 #27ae60; color: white;">📋 返回練習目錄</button>
             <button class="action-btn back-btn" onclick="switchMode('home')">🏠 返回主頁</button>
         </div>
     </div>
@@ -473,7 +485,6 @@
             const piece = document.getElementById(pieceId);
             const zone = document.getElementById(zoneId);
             
-            // 如果原本已經有方塊在裡面，把它放回銀行並恢復顯示
             if (zone.children.length > 0 && zone.children[0].classList.contains('drag-piece')) {
                 const oldPiece = zone.children[0];
                 document.getElementById('piece-bank').appendChild(oldPiece);
@@ -490,20 +501,19 @@
                 introState.cond = true;
             }
             
-            // 關鍵邏輯：當選擇了某個行動時，立刻隱藏另一個行動
             if (pieceId === 'block-act-1') { 
                 introState.act = true; 
                 introState.selectedActId = pieceId; 
                 introState.selectedActText = "就開風扇。"; 
                 const otherPiece = document.getElementById('block-act-2');
-                if(otherPiece) otherPiece.style.display = 'none'; // 隱藏扇子
+                if(otherPiece) otherPiece.style.display = 'none'; 
             }
             if (pieceId === 'block-act-2') { 
                 introState.act = true; 
                 introState.selectedActId = pieceId; 
                 introState.selectedActText = "就用扇子扇涼。"; 
                 const otherPiece = document.getElementById('block-act-1');
-                if(otherPiece) otherPiece.style.display = 'none'; // 隱藏風扇
+                if(otherPiece) otherPiece.style.display = 'none'; 
             }
             
             checkMagicSuccess();
@@ -528,7 +538,6 @@
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             const bank = document.getElementById('piece-bank');
             
-            // 關鍵邏輯：把所有卡片放回銀行，並清除隱藏狀態（恢復原本的顯示樣式）
             const condBlock = document.getElementById('block-cond');
             if(condBlock) { bank.appendChild(condBlock); condBlock.style.display = ''; }
             
@@ -617,18 +626,59 @@
             if (mode === 'home') { document.getElementById('home-page').style.display = 'flex'; } 
             else if (mode === 'intro') { resetIntroPanel(); document.getElementById('intro-panel').style.display = 'block'; } 
             else if (mode === 'teaching') { document.getElementById('teaching-panel').style.display = 'block'; } 
-            else if (mode === 'practice-low') { isHighMode = false; document.getElementById('practice-panel').style.display = 'block'; document.getElementById('practice-mode-title').innerHTML = "🎮 練習模式(初)"; currentLevelIndex = 0; loadQuestion(); } 
+            // 修改：初級模式進入時顯示目錄
+            else if (mode === 'practice-low') { isHighMode = false; document.getElementById('practice-panel').style.display = 'block'; document.getElementById('practice-mode-title').innerHTML = "🎮 練習模式(初)"; showLowModeMenu(); } 
             else if (mode === 'practice-high') { isHighMode = true; document.getElementById('practice-panel').style.display = 'block'; document.getElementById('practice-mode-title').innerHTML = "🚀 練習模式(高) <span style='font-size:20px; color:#9b59b6;'>(先選情境)</span>"; currentLevelIndex = 0; loadQuestion(); } 
             else if (mode === 'summary') { document.getElementById('summary-panel').style.display = 'block'; }
+        }
+
+        // 新增：顯示初級練習目錄
+        function showLowModeMenu() {
+            window.speechSynthesis.cancel();
+            document.getElementById('low-mode-menu').style.display = 'block';
+            document.getElementById('high-mode-selection').style.display = 'none';
+            document.getElementById('condition-area').style.display = 'none';
+            document.getElementById('options-area').style.display = 'none';
+            document.getElementById('result-area').style.display = 'none';
+            document.getElementById('completion-area').style.display = 'none';
+            document.getElementById('progress').style.display = 'none';
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('low-menu-back-btn').style.display = 'none';
+
+            const menuOptions = document.getElementById('low-menu-options');
+            menuOptions.innerHTML = '';
+            
+            // 遍歷題目生成美觀的選擇按鈕
+            questions.forEach((q, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn cond-btn'; 
+                btn.style.width = '100%';
+                btn.style.minWidth = 'unset';
+                btn.style.padding = '15px';
+                btn.innerHTML = `<div>第 ${index + 1} 題</div><div style="font-size: 22px; margin-top:5px;">${q.conditionText}...</div>`;
+                btn.onclick = () => selectLowModeQuestion(index);
+                menuOptions.appendChild(btn);
+            });
+        }
+
+        // 新增：選定初級模式題目
+        function selectLowModeQuestion(index) {
+            currentLevelIndex = index;
+            document.getElementById('low-mode-menu').style.display = 'none';
+            document.getElementById('progress').style.display = 'block';
+            loadQuestion();
         }
 
         function loadQuestion() {
             let totalLevels = isHighMode ? highModePairs.length : questions.length;
             document.getElementById('progress').innerText = `第 ${currentLevelIndex + 1} 題 / 共 ${totalLevels} 題`;
+            document.getElementById('low-mode-menu').style.display = 'none'; // 確保隱藏目錄
             document.getElementById('result-area').style.display = 'none';
             document.getElementById('completion-area').style.display = 'none';
             document.getElementById('redo-cond-btn').style.display = isHighMode ? 'inline-block' : 'none';
             document.getElementById('prev-btn').style.display = (currentLevelIndex > 0) ? 'inline-block' : 'none';
+            // 控制「返回目錄」按鈕只在初級模式答題時顯示
+            document.getElementById('low-menu-back-btn').style.display = isHighMode ? 'none' : 'inline-block';
 
             if (isHighMode) {
                 const q1 = questions[highModePairs[currentLevelIndex][0]];
@@ -709,6 +759,17 @@
         }
 
         function prevQuestion() { window.speechSynthesis.cancel(); if (currentLevelIndex > 0) { currentLevelIndex--; loadQuestion(); } }
+        
+        // 新增：處理完成畫面後的跳轉邏輯
+        function showLowModeMenuOrReset() {
+            if (isHighMode) {
+                currentLevelIndex = 0;
+                loadQuestion();
+            } else {
+                showLowModeMenu();
+            }
+        }
+
         function nextQuestion() {
             window.speechSynthesis.cancel();
             currentLevelIndex++;
@@ -721,6 +782,7 @@
                 document.getElementById('result-area').style.display = 'none';
                 document.getElementById('completion-area').style.display = 'block';
                 document.getElementById('prev-btn').style.display = 'inline-block';
+                document.getElementById('low-menu-back-btn').style.display = 'none';
             }
         }
 
