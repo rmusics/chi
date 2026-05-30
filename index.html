@@ -309,9 +309,9 @@
 
     <div id="home-page">
         <div class="mode-card" id="mode-intro" onclick="switchMode('intro')"><div class="mode-icon">💡</div><div class="mode-title">引入主題</div><div class="mode-desc">生活情境</div></div>
-        <div class="mode-card" id="mode-teaching" onclick="switchMode('teaching')"><div class="mode-icon">👨‍🏫</div><div class="mode-title">教學模式</div><div class="mode-desc">學習和聆聽句式示範</div></div>
-        <div class="mode-card" id="mode-practice-low" onclick="switchMode('practice-low')"><div class="mode-icon">🎮</div><div class="mode-title">練習模式(初)</div><div class="mode-desc">根據情境，選出行動</div></div>
-        <div class="mode-card" id="mode-practice-high" onclick="switchMode('practice-high')"><div class="mode-icon">🚀</div><div class="mode-title">練習模式(高)</div><div class="mode-desc">自選情境，再選出行動</div></div>
+        <div class="mode-card" id="mode-teaching" onclick="switchMode('teaching')"><div class="mode-icon">👨‍🏫</div><div class="mode-title">句式示範</div><div class="mode-desc">學習和聆聽句式示範</div></div>
+        <div class="mode-card" id="mode-practice-low" onclick="switchMode('practice-low')"><div class="mode-icon">🎮</div><div class="mode-title">句式練習(一)</div><div class="mode-desc">根據情境，選出行動</div></div>
+        <div class="mode-card" id="mode-practice-high" onclick="switchMode('practice-high')"><div class="mode-icon">🚀</div><div class="mode-title">句式練習(二)</div><div class="mode-desc">自選情境，再選出行動</div></div>
         <div class="mode-card" id="mode-summary" onclick="switchMode('summary')"><div class="mode-icon">📚</div><div class="mode-title">學習總結</div><div class="mode-desc">溫故知新，重溫所有句式</div></div>
     </div>
 
@@ -339,11 +339,10 @@
             <div id="zone-act" class="drop-zone" ondrop="drop(event, 'act')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">請放入「就...」</div>
         </div>
         
-        <div id="magic-result">
-            <div style="font-size: 60px;">✨🎉✨</div>
+       <div id="magic-result">
             <img id="magic-sentence-img" src="" alt="魔法" style="display: none;">
             
-            <video id="magic-sentence-video" style="display: none; width: 100%; max-width: 600px; border-radius: 15px; margin: 0 auto 10px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" controls></video>
+            <video id="magic-sentence-video" style="display: none; width: 100%; max-width: 900px; border-radius: 15px; margin: 0 auto 10px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" controls></video>
             
             <div class="magic-text" id="magic-sentence-text">如果天氣炎熱，...</div>
             <div class="action-buttons-container" style="margin-top: 20px;">
@@ -351,9 +350,10 @@
                 <button class="action-btn redo-btn" onclick="resetIntroPanel()">🔄 重新開始</button>
             </div>
         </div>
+        </div>
         <div class="bottom-nav">
             <button class="action-btn back-btn" onclick="switchMode('home')">🏠 返回主頁</button>
-            <button class="action-btn next-btn" onclick="switchMode('teaching')">進入教學模式 ➡️</button>
+            <button class="action-btn next-btn" onclick="switchMode('teaching')">進入句式示範 ➡️</button>
         </div>
     </div>
 
@@ -408,7 +408,7 @@
     </div>
 
     <div id="practice-panel" class="content-panel">
-        <h2 id="practice-mode-title" class="panel-title">🎮 練習模式</h2>
+        <h2 id="practice-mode-title" class="panel-title">🎮 句式練習</h2>
         <div id="progress">第 1 題</div>
         
         <div id="low-mode-menu" class="mode-menu" style="display: none;">
@@ -668,13 +668,13 @@
             else if (mode === 'practice-low') { 
                 isHighMode = false; 
                 document.getElementById('practice-panel').style.display = 'block'; 
-                document.getElementById('practice-mode-title').innerHTML = "🎮 練習模式(初)"; 
+                document.getElementById('practice-mode-title').innerHTML = "🎮 句式練習(一)"; 
                 showMenu(); 
             } 
             else if (mode === 'practice-high') { 
                 isHighMode = true; 
                 document.getElementById('practice-panel').style.display = 'block'; 
-                document.getElementById('practice-mode-title').innerHTML = "🚀 練習模式(高)"; 
+                document.getElementById('practice-mode-title').innerHTML = "🚀 句式練習(二)"; 
                 showMenu(); 
             } 
             else if (mode === 'summary') { document.getElementById('summary-panel').style.display = 'block'; }
